@@ -1,0 +1,4 @@
+logs:
+  timestamps: false
+  since: '60m'
+  tail: '200'
