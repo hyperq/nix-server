@@ -1,23 +1,27 @@
-# nix-server
+# 🚀 nix-server
 
-One-script bootstrap for Linux servers: system hardening + Docker + Nix + personal dev environment.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-Optimized for China mainland servers (all dependencies use domestic mirrors).
+一键初始化 Linux 服务器：系统加固 + Docker + Nix + 个人开发环境。
 
-## What It Does
+专为国内服务器优化，所有依赖均使用国内镜像源。
+
+[English](README_EN.md) | 中文
+
+## ✨ 功能概览
 
 ```
-[0] Prerequisites     → git, curl
-[1] System Init       → SSH hardening, timezone, kernel tuning, ulimits
-[2] Docker            → Aliyun apt/yum source, registry mirrors, log rotation
-[3] Fail2ban          → SSH brute force protection (3 fails = 1hr ban)
-[4] Nix               → Single-user install via USTC mirror
-[5] Nix Mirrors       → USTC binary cache
-[6] Clone Config      → This repo via ghproxy
-[7] Home Manager      → Fish, Starship, Neovim, and CLI tools
+[0] 📦 前置依赖      → git, curl
+[1] 🔒 系统初始化    → SSH 加固、时区、内核调优、文件描述符
+[2] 🐳 Docker       → 阿里云源安装、镜像加速、日志轮转
+[3] 🛡️ Fail2ban     → SSH 防暴力破解（3 次失败封禁 1 小时）
+[4] ❄️ Nix          → 中科大镜像单用户安装
+[5] 🪞 Nix 镜像     → USTC binary cache
+[6] 📥 拉取配置      → 通过 ghproxy 克隆本仓库
+[7] 🏠 Home Manager → Fish、Starship、Neovim 及 CLI 工具链
 ```
 
-## Quick Start
+## 🏃 快速开始
 
 ```bash
 apt-get install -y git curl
@@ -25,44 +29,49 @@ git clone https://ghproxy.link/https://github.com/hyperq/nix-server.git ~/nix-se
 cd ~/nix-server && bash install.sh
 ```
 
-> **Important:** Password login is disabled after install. Make sure your pubkey is in `~/.ssh/authorized_keys` before running.
+> ⚠️ **注意：** 安装后密码登录将被禁用！运行前请确保你的公钥已添加到 `~/.ssh/authorized_keys`。
 
-## Included Tools
+## 🧰 包含工具
 
-| Category | Tools |
-|----------|-------|
-| Shell | fish, starship, zoxide, atuin, fzf |
-| Editor | neovim (LazyVim) |
-| CLI | bat, eza, fd, ripgrep, jq, yazi, bottom |
-| Docker | lazydocker |
+| 类别 | 工具 |
+|------|------|
+| 🐚 Shell | fish, starship, zoxide, atuin, fzf |
+| ✏️ 编辑器 | neovim (LazyVim + Catppuccin 主题) |
+| 🔧 CLI | bat, eza, fd, ripgrep, jq, yazi, bottom |
+| 🐳 Docker | lazydocker |
 
-## Structure
+## 📁 项目结构
 
 ```
-flake.nix          → Nix flake entry (nixpkgs + home-manager)
-home.nix           → Packages + fish/starship config
-install.sh         → Full server bootstrap script
+flake.nix          → Nix Flake 入口 (nixpkgs + home-manager)
+home.nix           → 包列表 + fish/starship 配置
+install.sh         → 完整服务器初始化脚本
 dotfiles/
-  atuin/           → Shell history config
-  bat/             → Syntax highlighting theme
-  lazydocker/      → Docker TUI config
-  nvim/            → LazyVim config (Catppuccin + VSCode keybindings)
-  yazi/            → File manager config
+  ├── atuin/       → 命令历史配置
+  ├── bat/         → 语法高亮主题
+  ├── lazydocker/  → Docker TUI 配置
+  ├── nvim/        → LazyVim (Catppuccin + VSCode 键位)
+  └── yazi/        → 文件管理器配置
 ```
 
-## Customization
+## ⚙️ 自定义
 
-- **Username/home:** Edit `home.username` and `home.homeDirectory` in `home.nix`
-- **Packages:** Add/remove from `home.packages` in `home.nix`
-- **SSH ports:** Modify firewall section in `install.sh`
-- **Docker mirrors:** Update `registry-mirrors` in `install.sh` if mirrors go down
+| 需求 | 修改位置 |
+|------|---------|
+| 用户名/目录 | `home.nix` → `home.username` / `home.homeDirectory` |
+| 增减软件包 | `home.nix` → `home.packages` |
+| 开放端口 | `install.sh` → 防火墙区域 |
+| Docker 镜像源 | `install.sh` → `registry-mirrors`（镜像挂了就换） |
 
-## Supported OS
+## 💻 支持系统
 
-- Debian 12/13
-- Ubuntu 22.04+
-- CentOS 8+ / RHEL / AlmaLinux / Rocky Linux
+| 发行版 | 版本 |
+|--------|------|
+| 🟢 Debian | 12 / 13 |
+| 🟢 Ubuntu | 22.04+ |
+| 🟢 CentOS / RHEL | 8+ |
+| 🟢 AlmaLinux / Rocky | 8+ |
 
-## License
+## 📄 许可证
 
-[MIT](LICENSE)
+[MIT](LICENSE) © 2026 hyperq
