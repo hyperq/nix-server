@@ -128,7 +128,9 @@ cat > /etc/docker/daemon.json << 'EOF'
 {
   "registry-mirrors": [
     "https://docker.1ms.run",
-    "https://docker.xuanyuan.me"
+    "https://docker.1panel.live",
+    "https://docker.m.daocloud.io",
+    "https://dockerproxy.net"
   ],
   "log-driver": "json-file",
   "log-opts": {
